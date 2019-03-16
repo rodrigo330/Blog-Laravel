@@ -1,4 +1,4 @@
-@extends('blog.layout')
+@extends('layouts.app')
 
 @section('title','Mostar Post')
 

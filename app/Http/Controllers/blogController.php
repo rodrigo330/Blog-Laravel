@@ -8,9 +8,13 @@ use Illuminate\Http\Request;
 
 class blogController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth')->except(['index','show']);
+    }
+    
     public function index() {
         
-        $posts = Post::all();
+        $posts = Post::all()->reverse();
         return view('blog.index', compact('posts'));
     }
     
@@ -19,8 +23,17 @@ class blogController extends Controller
     }
     
     public function store() {
-        Post::create(request(['titulo','texto']));
-        return redirect('blog');
+        $request = request();
+        $validatedData = $request->validate([
+        'titulo' => 'required|min:3',
+        'texto' => 'required|min:3',
+        ]);
+        
+        $validatedData['owner_id'] = auth()->id();
+        Post::create($validatedData);
+        
+        
+        return redirect('/blog');
     }
     
     public function Show(Post $blog) {
@@ -28,16 +41,25 @@ class blogController extends Controller
     }
     
     public function edit(Post $blog) {
+        abort_unless(\Gate::allows('view',$blog), 403);
         return view('blog.edit',compact('blog'));
     }
     
     public function update(Post $blog) {
+        abort_unless(\Gate::allows('view',$blog), 403);
         $blog->update(request(['titulo','texto']));
         return redirect('/blog');
     }
     
     public function destroy(Post $blog) {
+        abort_unless(\Gate::allows('view',$blog), 403);
         $blog->delete();
         return redirect('/blog');
+    }
+    
+    public function posts() {
+        
+        $posts = Post::where('owner_id', auth()->id())->get();
+        return view('blog.posts', compact('posts'));
     }
 }

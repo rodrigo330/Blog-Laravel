@@ -15,4 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/blog/posts/', 'blogController@posts')->name('blog.posts');
+
 Route::resource('blog','blogController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+

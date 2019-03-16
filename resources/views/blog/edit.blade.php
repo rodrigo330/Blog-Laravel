@@ -1,36 +1,29 @@
-@extends('blog.layout')
+@extends('layouts.app')
 
 @section('title','Editar Post')
 
 @section('content')
-<form action="/blog/{{ $blog->id }}" method="POST">
-    @method('PATCH')
-    @csrf
-    <h2>
-        Criar um novo Post
-    </h2>
-    
-    <div>
-        <input type="text" name="titulo" placeholder="{{ $blog->titulo }}" value="{{ $blog->titulo }}">
-    </div>
-    
-    <div>
-        <textarea name="texto">{{ $blog->texto }}</textarea>
-        
-    </div>
-    
-    <div>
-        <button type="submit">Postar no Blog</button>
-    </div>
-    
-</form>
+<div class="container-fluid">
+    <form action="/blog/{{ $blog->id }}" method="POST">
+        @method('PATCH')
+        @csrf
+        <div class="form-group">
+            <label for="exampleInputEmail1">Titulo do Post</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" value="{{ $blog->titulo }}" name="titulo" required>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Conteudo do Post</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="texto" required>{{ $blog->texto }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Editar Post</button>
 
-<form action="/blog/{{ $blog->id }}" method="POST">
-    @method('DELETE')
-    @csrf
-    
-    <div>
-        <button type="submit">Deletar Post</button>
-    </div>
-</form>
+    </form>
+
+    <form action="/blog/{{ $blog->id }}" method="POST">
+        @method('DELETE')
+        @csrf
+
+        <button type="button" class="btn btn-secondary btn-lg btn-block">Deletar Post</button>
+    </form>
+</div>
 @endsection
