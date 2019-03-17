@@ -11,4 +11,8 @@ class Post extends Model
     public function autor() {
         return $this->belongsTo(User::class,'owner_id','id');
     }
+    
+    public function tags() {
+        return $this->belongsToMany(tag::class,'post_tag','post_id','tag_id');
+    }
 }
