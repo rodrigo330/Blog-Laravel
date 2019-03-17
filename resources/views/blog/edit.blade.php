@@ -3,7 +3,7 @@
 @section('title','Editar Post')
 
 @section('content')
-<div class="container-fluid">
+<div class="card m-5 p-5">
     <form action="/blog/{{ $blog->id }}" method="POST">
         @method('PATCH')
         @csrf
@@ -23,7 +23,7 @@
         @method('DELETE')
         @csrf
 
-        <button type="button" class="btn btn-secondary btn-lg btn-block">Deletar Post</button>
+        <button type="button" class="btn btn-secondary btn-lg btn-block mt-1">Deletar Post</button>
     </form>
 </div>
 @endsection

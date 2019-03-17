@@ -4,7 +4,7 @@
 
 @section('content')
 @foreach($posts as $post)
-<div class="card container-fluid m-3">
+<div class="card m-5 p-5">
     <div>
         <a href="/blog/{{$post->id}}" > <h1 style="display: inline-block">{{$post->titulo}}</h1> </a>
         <small>Criado por: {{$post->autor['name']}}</small>

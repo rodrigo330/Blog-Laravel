@@ -5,7 +5,7 @@
 @section('content')
 
 
-<div class="container-fluid">
+<div class="card  m-5 p-5">
     <form action="/blog" method="POST">
         @csrf
       <div class="form-group">
