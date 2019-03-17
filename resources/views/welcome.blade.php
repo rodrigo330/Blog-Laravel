@@ -13,5 +13,7 @@
         <p class="card-body">
             Telefone: (15)98189-0900
         </p>
+        
+        <small> Por enquanto para adicionar tags tem que adicionar pelo Banco de dados</small>
     </div>
 @endsection
