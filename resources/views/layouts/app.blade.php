@@ -43,6 +43,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/blog/create">New Post</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/tag/create">New Tag</a>
+                        </li>
                         
                         @endif
                     </ul>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\tag;
 
 use Illuminate\Http\Request;
 
@@ -38,7 +39,8 @@ class blogController extends Controller
     }
     
     public function Show(Post $blog) {
-        return view('blog.show', compact('blog'));
+        $alltags = tag::all();
+        return view('blog.show', compact('blog','alltags'));
     }
     
     public function edit(Post $blog) {

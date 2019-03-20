@@ -19,6 +19,12 @@ Route::get('/blog/posts/', 'blogController@posts')->name('blog.posts');
 
 Route::resource('blog','blogController');
 
+Route::get('/tag/create', 'TagController@create');
+
+Route::post('/tag', 'TagController@store');
+
+Route::post('/blog/{blog}/tag', 'TagController@addTag');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
